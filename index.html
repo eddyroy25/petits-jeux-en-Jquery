@@ -13,20 +13,20 @@
        <h2 class="display-3">Petits exercices en JQuery</h2>
        
        <h4>Exercice 1</h4>
-        <p id="<h4>Exercice 1 :</h4>texte" onclick="grandir()">[Je grandis quand tu cliques sur moi. Quand tu recliques, je rétrécis.]</p>
+            <p id="grand">[Je grandis quand tu cliques sur moi. Quand tu recliques, je rétrécis.]</p>
         
         <h4>Exercice 2</h4>
-          <div id="carre"></div>
+              <div id="carre"></div>
           
           
-        <button id="10px" type="button" class="btn btn-default" onclick=" grandirCarre()">+10px</button>
-        <button id="enVert" type="button" class="btn btn-success" onclick="green()">Vert</button>
-        <button id="classique" type="button" class="btn btn-primary" onclick="normal()">Initial</button>
-        <button type="button" class="btn btn-info" onclick="bye()">Disparait</button>
-        <button type="button" class="btn btn-warning" onclick="hello()">Réaparait</button>
+        <button id="10px" type="button" class="btn btn-default">+10px</button>
+        <button id="green" type="button" class="btn btn-success">Vert</button>
+        <button id="classique" type="button" class="btn btn-primary">Initial</button>
+        <button id="disappear" type="button" class="btn btn-info">Disparait</button>
+        <button id="reappears" type="button" class="btn btn-warning">Réaparait</button>
         
         <h4>Exercice 3</h4>
-        <p>Appuyez sur z, s, d, ou q pour faire bouger le carré.</p>
+            <p>Appuyez sur z, s, d, ou q pour faire bouger le carré.</p>
         <div class="relative">  
             <div id="carre2" style="top:0px;left:0px;"></div>
         </div>
@@ -34,6 +34,76 @@
     
     
 </body>
-        
-        
+               
  <!-------------------- J.Query ------------------->
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        
+   <script>
+    
+//----------------------------- EXERCICE 1----------------------------
+       var taille = $("#grand").css('font-size');
+       var color = $("#carre").css('background-color'); 
+       
+       jQuery(function($){
+           
+            $("#grand").click(function(){
+                
+            if (taille == "15px"){
+              $("#grand").css("font-size", "30px");
+              taille = $("#grand").css('font-size');
+            }
+            else {
+              $("#grand").css("font-size", "15px");
+              taille = $("#grand").css('font-size');
+            }
+            
+    });
+    
+//--------------------------- SOLUTION PLUS SIMPLE --------------
+           
+//           $('p').click(function() {
+//               
+//           $(this).toggleClass("active");
+//               
+//            });
+//                     
+//----------------------------- EXERCICE 2 -----------------------
+
+           $('#10px').click(function(){
+            var carresize = $("#carre").height();
+             console.log(carresize);
+               
+            if (carresize >= 300){
+            $('#carre').animate({height: '50px'}, "slow");
+            }
+    
+            else{
+            $('#carre').animate({height: '+=10px'}, "slow");
+            carresize = $('#carre').css("height");
+            }
+            });
+               
+           
+           $("#green").click(function(){
+             $("#carre").css("background-color", "green");
+           });
+           
+           $("#classique").click(function(){
+             $("#carre").css("background-color", "blue");
+             $("#carre").css("height", "50px");   
+           });
+           
+           $("#disappear").click(function(){
+             $("#carre").hide();
+               
+           });
+           
+           $("#reappears").click(function(){
+             $("#carre").show();
+               
+           });
+           
+           
+});
+   </script>  
